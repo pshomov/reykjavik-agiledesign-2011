@@ -26,6 +26,15 @@ namespace PointOfSales
 			sale.onBarcodeReceived("iPhone");
 			display.Received().show("Error: No such product");
 		}
+		
+		[Test]
+		public void shouldDisplayErrorWhenBarcodeIsEmpty() {
+			var display = Substitute.For<Display>();
+			var sale = new Sale(display);
+
+			sale.onBarcodeReceived("");
+			display.Received().show("Error: Barcode is empty, fix your scanner please.");
+		}
 	}
 	
 	public interface Display{
@@ -42,7 +51,8 @@ namespace PointOfSales
 		public void onBarcodeReceived(string barcode){
 			Dictionary<string, string> priceCatalog = new Dictionary<string, string>(){
 				{"1212", "123,5 kr"},
-				{"iPhone", "Error: No such product"}
+				{"iPhone", "Error: No such product"},
+				{"", "Error: Barcode is empty, fix your scanner please."}
 			};
 			
 			display.show(priceCatalog[barcode]);
