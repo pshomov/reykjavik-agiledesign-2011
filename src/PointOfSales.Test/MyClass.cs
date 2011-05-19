@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using NSubstitute;
+using System.Collections.Generic;
 
 namespace PointOfSales
 {
@@ -37,11 +38,14 @@ namespace PointOfSales
 		public Sale(Display disp) {
 			this.display = disp;	
 		}
+
 		public void onBarcodeReceived(string barcode){
-			if (barcode ==  "iPhone") 
-				display.show("Error: No such product");
-			else
-				display.show("123,5 kr");
+			Dictionary<string, string> priceCatalog = new Dictionary<string, string>(){
+				{"1212", "123,5 kr"},
+				{"iPhone", "Error: No such product"}
+			};
+			
+			display.show(priceCatalog[barcode]);
 		}
 	}
 }
