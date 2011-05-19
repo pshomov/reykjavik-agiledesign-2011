@@ -34,8 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Display.cs" />
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ProductNotFoundException.cs" />
     <Compile Include="Sale.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
