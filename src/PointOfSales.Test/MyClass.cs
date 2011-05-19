@@ -38,7 +38,10 @@ namespace PointOfSales
 			this.display = disp;	
 		}
 		public void onBarcodeReceived(string barcode){
-			display.show("123,5 kr");
+			if (barcode ==  "iPhone") 
+				display.show("Error: No such product");
+			else
+				display.show("123,5 kr");
 		}
 	}
 }
