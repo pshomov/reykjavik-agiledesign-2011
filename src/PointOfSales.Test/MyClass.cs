@@ -78,10 +78,10 @@ namespace PointOfSales
 				display.show("Error: Barcode is empty, fix your scanner please.");
 			else
 				try{
-				display.show(string.Format("{0:F2} kr", catalog[barcode]));
-			} catch (KeyNotFoundException){
-				display.show("Error: No such product");
-			}
+					display.show(string.Format("{0:F2} kr", catalog[barcode]));
+				} catch (KeyNotFoundException){
+					display.show("Error: No such product");
+				}
 		}
 	}
 }
