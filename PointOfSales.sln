@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Test", "src\PointOfSales.Test\PointOfSales.Test.csproj", "{D4BC585F-CF6A-49FC-84A6-9C64974BFB3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSale.Domain", "src\PointOfSale.Domain\PointOfSale.Domain.csproj", "{B3E648B5-7CB3-4FE1-8C4B-9124B3898CC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3E648B5-7CB3-4FE1-8C4B-9124B3898CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3E648B5-7CB3-4FE1-8C4B-9124B3898CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3E648B5-7CB3-4FE1-8C4B-9124B3898CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3E648B5-7CB3-4FE1-8C4B-9124B3898CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4BC585F-CF6A-49FC-84A6-9C64974BFB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4BC585F-CF6A-49FC-84A6-9C64974BFB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4BC585F-CF6A-49FC-84A6-9C64974BFB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4BC585F-CF6A-49FC-84A6-9C64974BFB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = src\PointOfSales.Test\PointOfSales.Test.csproj
+	EndGlobalSection
+EndGlobal
