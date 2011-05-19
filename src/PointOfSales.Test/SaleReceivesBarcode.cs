@@ -2,11 +2,12 @@ using System;
 using NUnit.Framework;
 using NSubstitute;
 using System.Collections.Generic;
+using PointOfSale.Domain;
 
 namespace PointOfSales
 {
 	[TestFixture]
-	public class MyClass
+	public class SaleReceivesBarcode
 	{
 		[Test]
 		public void shouldDisplayPriceForProduct(){
@@ -57,31 +58,6 @@ namespace PointOfSales
 			
 			sale.onBarcodeReceived("iPad");
 			display.Received().show("122.00 kr");
-		}
-	}
-	
-	public interface Display{
-		void show(string message);
-	}
-	
-	public class Sale {
-		private Display display;
-		private Dictionary<string, float> catalog;
-		
-		public Sale(Display disp, Dictionary<string, float> cat) {
-			this.display = disp;	
-			this.catalog = cat;
-		}
-
-		public void onBarcodeReceived(string barcode){			
-			if (barcode == "") 
-				display.show("Error: Barcode is empty, fix your scanner please.");
-			else
-				try{
-					display.show(string.Format("{0:F2} kr", catalog[barcode]));
-				} catch (KeyNotFoundException){
-					display.show("Error: No such product");
-				}
 		}
 	}
 }
