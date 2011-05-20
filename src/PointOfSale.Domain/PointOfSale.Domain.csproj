@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Display.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="DisplayDriverError.cs" />
     <Compile Include="ProductNotFoundException.cs" />
     <Compile Include="Sale.cs" />
   </ItemGroup>

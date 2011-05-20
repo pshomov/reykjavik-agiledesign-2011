@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PointOfSale.Domain
@@ -16,16 +17,33 @@ namespace PointOfSale.Domain
             if (barcode == "") 
                 display.show("Error: Barcode is empty, fix your scanner please.");
             else
-                try{
-                    display.show(string.Format("{0:F2} kr", productCatalog.lookupPriceForBarcode(barcode)));
-                } catch (ProductNotFoundException){
-                    display.show("Error: No such product");
+            {
+                float lookupPriceForBarcode;
+                try
+                {
+                    lookupPriceForBarcode = productCatalog.lookupPriceForBarcode(barcode);
                 }
+                catch (ProductNotFoundException){
+                    display.show("Error: No such product");
+                    return;
+                } catch (Exception){
+                    display.show("Error: Something went real bad with the product catalog.");
+                    return;
+                }
+                try
+                {
+                    display.show(string.Format("{0:F2} kr", lookupPriceForBarcode));
+                }
+                catch (Exception e)
+                {
+                    throw new DisplayDriverError(e);
+                }
+            }
         }
     }
+}
 
-    public interface ProductCatalog
-    {
-        float lookupPriceForBarcode(string barcode);
-    }
+public interface ProductCatalog
+{
+    float lookupPriceForBarcode(string barcode);
 }

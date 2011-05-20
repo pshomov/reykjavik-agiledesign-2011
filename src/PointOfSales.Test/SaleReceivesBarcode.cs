@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using NSubstitute;
 using System.Collections.Generic;
@@ -58,6 +59,43 @@ namespace PointOfSales
 
             sale.onBarcodeReceived("iPad");
             display.Received().show("122.00 kr");
+        }
+
+        [Test]
+        public void shouldDisplayErrorWhenTheCatalogMakesBOOM()
+        {
+            var productCatalog = Substitute.For<ProductCatalog>();
+
+            productCatalog.WhenForAnyArgs(catalog => catalog.lookupPriceForBarcode("")).Do(
+                info => { throw new NullReferenceException(); });
+
+            var display = Substitute.For<Display>();
+            var sale = new Sale(display, productCatalog);
+
+            sale.onBarcodeReceived("iPad");
+
+            display.Received().show("Error: Something went real bad with the product catalog.");
+        }
+
+        [Test]
+        public void shouldDisplayErrorWhenTheDisplayMakesBOOM()
+        {
+            var productCatalog = Substitute.For<ProductCatalog>();
+            productCatalog.lookupPriceForBarcode("iPad").Returns(122);
+            var display = Substitute.For<Display>();
+            display.WhenForAnyArgs(catalog => catalog.show("")).Do(
+                info => { throw new NullReferenceException(); });
+
+            var sale = new Sale(display, productCatalog);
+
+            try
+            {
+                sale.onBarcodeReceived("iPad");
+                Assert.Fail("the driver is broken why no exception");
+            }
+            catch (DisplayDriverError)
+            {
+            }
         }
     }
 }
